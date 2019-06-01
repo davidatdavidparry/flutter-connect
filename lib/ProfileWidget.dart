@@ -6,6 +6,7 @@ import 'package:github/server.dart';
 
 class ProfileWidget extends StatelessWidget {
   GitHub github;
+  List<Map<String, dynamic>> gitusers = null;
 
   ProfileWidget();
 
@@ -14,7 +15,7 @@ class ProfileWidget extends StatelessWidget {
       try {
         github = GitHub(
             auth: Authentication.withToken(
-                "ce2bbdb430d6d3eb15cace43cb4c4b4649713634"));
+                "1d15249042f07d8849b0cea5d32ee5eba9faadef"));
       } catch (exception, stackTrace) {
         print("Excpetion occured ${exception}");
       }
@@ -35,8 +36,8 @@ class ProfileWidget extends StatelessWidget {
                     children: <Widget>[
                       new Expanded(
                           child: new ListView(
-                        children: _getDataProjectUsers(snapshot),
-                      ))
+                            children: _getDataProjectUsers(snapshot),
+                          ))
                     ],
                   );
                 } else {
@@ -50,7 +51,7 @@ class ProfileWidget extends StatelessWidget {
   }
 
   List<Widget> _getDataProjectUsers(AsyncSnapshot snapshot) {
-    List<Map<String,dynamic>> users = snapshot.data;
+    List<Map<String, dynamic>> users = snapshot.data;
     List<Widget> widgets = new List();
     print('usrsCnt : $users');
     if (users != null) {
@@ -66,45 +67,58 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Future<List<Map<String, dynamic>>> search(_) async {
-    List<Map<String, dynamic>> users = new List();
-    List<String> searchItems = new List();
-    var github = createClient();
-    if (github != null) {
-      try {
-        Stream<CodeSearchResults> resultsStream = createClient().search.code(
-              'github',
-              language: 'flutter',
-              perPage: 10,
-              pages: 1,
-            );
+    if (gitusers == null) {
+      List<Map<String, dynamic>> users = new List();
+      List<String> searchItems = new List();
+      var github = createClient();
+      if (github != null) {
+        try {
+          Stream<CodeSearchResults> resultsStream = createClient().search.code(
+            'github',
+            language: 'flutter',
+            perPage: 10,
+            pages: 1,
+          );
 
-        await for (var results in resultsStream) {
-          print('results: $results ');
-          for (CodeSearchItem item in results.items) {
-            var login = item.repository.owner.login;
-            var id = item.repository.owner.id.toString();
-            print('item: $item ');
-            print("adding user login id $login");
-            searchItems.add(login);
+          await for (var results in resultsStream) {
+            print('results: $results ');
+            for (CodeSearchItem item in results.items) {
+              var login = item.repository.owner.login;
+              var id = item.repository.owner.id.toString();
+              print('item: $item ');
+              print("adding user login id $login");
+              searchItems.add(login);
+            }
           }
+        } catch (exception, stackTrace) {
+          print("Excpetion occured ${exception}");
         }
-      } catch (exception, stackTrace) {
-        print("Excpetion occured ${exception}");
-      }
 
-      if (searchItems.isNotEmpty) {
-        var github = createClient();
-        if (github != null) {
-          Stream<User> usersStreams =
+        try {
+          if (searchItems.isNotEmpty) {
+            var github = createClient();
+            if (github != null) {
+              Stream<User> usersStreams =
               await createClient().users.getUsers(searchItems);
-          await for (var resultUser in usersStreams) {
-            print("adding user to the list $resultUser ");
-            Map _map = resultUser.toJson();
-            users.add(_map);
+              await for (var resultUser in usersStreams) {
+                print("adding user to the list $resultUser ");
+                Map _map = resultUser.toJson();
+                _map['user_image'] =  new DecorationImage(
+                  image: new NetworkImage(_map['avatar_url']),
+                  fit: BoxFit.cover,
+                );
+                users.add(_map);
+              }
+            }
           }
+        } catch (exception, stackTrace) {
+          print("Excpetion occured ${exception}");
         }
       }
+      gitusers = users;
+      return users;
+    } else {
+      return gitusers;
     }
-    return users;
   }
 }

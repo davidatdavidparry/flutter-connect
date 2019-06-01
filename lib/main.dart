@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:github/server.dart';
 import 'Feed.dart';
 import 'ProfileWidget.dart';
-
+import 'package:flutter_app/SwipeAnimation/index.dart';
 void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
-      home: MyStatefulWidget(),
+      home: CardDemo(),
     );
   }
 }
