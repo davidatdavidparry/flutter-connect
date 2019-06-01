@@ -129,7 +129,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     return (new Scaffold(
         appBar: new AppBar(
           elevation: 0.0,
-          backgroundColor: new Color.fromRGBO(50,56,131, 1.0),
+          backgroundColor: new Color.fromRGBO(7,91,154, 1.0),
           centerTitle: true,
           // leading: new Container(
           //   margin: const EdgeInsets.all(15.0),
@@ -151,7 +151,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                   margin: const EdgeInsets.all(15.0),
                   child: new Icon(
                     Icons.person_outline,
-                    color: Colors.cyan,
+                    color: Colors.white,
                     size: 30.0,
                   )),
             ),
@@ -185,7 +185,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
           // TO DO: Make this a gradient
           // Main Background
-          color: new Color.fromRGBO(50,56,131, 1.0),
+          color: new Color.fromRGBO(7,91,154, 1.0),
           alignment: Alignment.center,
           child: dataLength > 0
               ? new Stack(

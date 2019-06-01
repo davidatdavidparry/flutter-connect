@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       home: MyStatefulWidget(),
     );
@@ -51,6 +52,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
     return Scaffold(
       appBar: AppBar(
+        
         title: const Text('Value'),
       ),
       body: Center(
