@@ -1,25 +1,26 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:github/server.dart';
-import 'dart:developer';
 
 class ProfileWidget extends StatelessWidget {
-
-
   GitHub github;
 
   ProfileWidget();
 
-  GitHub createClient(String token) {
-    return GitHub(auth: Authentication.withToken(token));
+  GitHub createClient() {
+    if (github == null) {
+      github = GitHub(auth: Authentication.withToken("cc6f13198f21dc1c2d7c5179a34e7d3d5c805ed5"));
+    }
+    return github;
   }
 
   Widget build(context) {
     //search('here is value');
 
-   // createClient("3f4c94454acc3438ac23c7f45c3a92026e7c6d69").users.getCurrentUser()
+    // createClient("3f4c94454acc3438ac23c7f45c3a92026e7c6d69").users.getCurrentUser()
 
     return new Container(
         alignment: Alignment.center,
@@ -33,7 +34,7 @@ class ProfileWidget extends StatelessWidget {
                     children: <Widget>[
                       new Expanded(
                           child: new ListView(
-                        children:_getDataProjectUsers(snapshot),
+                        children: _getDataProjectUsers(snapshot),
                       ))
                     ],
                   );
@@ -41,19 +42,16 @@ class ProfileWidget extends StatelessWidget {
                   return new Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'Waiting'
-                      ));
+                      child: Text('Waiting'));
                 }
               }
             }));
   }
 
   List<Widget> _getDataUser(AsyncSnapshot snapshot) {
-
     var v = snapshot.data.bio;
 
-    debugPrint('bio : $v');
+    print('bio : $v');
 
     List<Widget> widgets = <Widget>[
       Text(
@@ -66,46 +64,56 @@ class ProfileWidget extends StatelessWidget {
   }
 
   List<Widget> _getDataProjectUsers(AsyncSnapshot snapshot) {
-    var v = snapshot.data;
+   List<User> users = snapshot.data;
 
-    debugPrint('bio : $v');
+    print('usrsCnt : $users');
 
-    List<Widget> widgets = <Widget>[
+    List<Widget> wid = <Widget>[
       Text(
-        'BIO data is, $v !',
+        'BIO data is, $users !',
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.bold),
       )
     ];
+
+
+
+    List<Widget> widgets = <Widget>[
+    Image.network( users.elementAt(0).avatarUrl.toString(),
+    )];
     return widgets;
   }
 
+  Future<List<User>> search(_) async {
+    print('here: $_');
 
+    List<User> users = new List();
 
-
-
-  Future<String> search(_) async {
-    debugPrint('here: $_');
-
-
-    Stream<CodeSearchResults> resultsStream = createClient("84f0906d2e9912da328bf65bfec40cfe0a7f9267").search.code(
-      'github',
-      language: 'dart,flutter',
-        perPage: 5, pages: 5,
-    );
+    Map map = new Map<String, User>();
+    Stream<CodeSearchResults> resultsStream =
+        createClient().search.code(
+              'github',
+              language: 'flutter',
+              perPage: 5,
+              pages: 5,
+            );
 
     int count = 0;
     await for (var results in resultsStream) {
-      debugPrint('results: $results ');
+      print('results: $results ');
       for (CodeSearchItem item in results.items) {
-        debugPrint('item: $item ');
+        var login = item.repository.owner.login;
+        var id = item.repository.owner.id.toString() ;
+        print('item: $item ');
+        //map[id] = item;
 
+         createClient().users.getUser(login).then((user) {
+          users.add(user);
+
+         });
       }
     }
 
-    return 'here';
+    return users;
   }
-
-
-
 }
