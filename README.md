@@ -1,1 +1,1 @@
-# hackathon-flutter
+# FlutterConnect
