@@ -12,7 +12,7 @@ class ProfileWidget extends StatelessWidget {
 
   GitHub createClient() {
     if (github == null) {
-      github = GitHub(auth: Authentication.withToken("dae75dc5aadbb6dda2d30080ff3af34c0112597e"));
+      github = GitHub(auth: Authentication.withToken("3f61d11baf9d4eb00119ba2c7bd4c62bd04de788"));
     }
     return github;
   }

@@ -63,20 +63,22 @@ Positioned cardDemo(
               },
               child: new Card(
                 color: Colors.transparent,
-                elevation: 4.0,
+                // drop shadow height
+                elevation: 8.0,
                 child: new Container(
                   alignment: Alignment.center,
                   width: screenSize.width / 1.2 + cardWidth,
                   height: screenSize.height / 1.7,
                   decoration: new BoxDecoration(
-                    color: new Color.fromRGBO(121, 114, 173, 1.0),
+                    color: new Color.fromRGBO(255,255,255, 1.0),
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   child: new Column(
                     children: <Widget>[
                       new Container(
                         width: screenSize.width / 1.2 + cardWidth,
-                        height: screenSize.height / 2.2,
+                        // This is size of thumnbail
+                        height: 300.0,
                         decoration: new BoxDecoration(
                           borderRadius: new BorderRadius.only(
                               topLeft: new Radius.circular(8.0),
@@ -84,10 +86,16 @@ Positioned cardDemo(
                           image: img,
                         ),
                       ),
+                      Container(
+                        child: Text("John Williams"),
+                      ),
+                       Container(
+                        child: Text("Developer"),
+                      ),
                       new Container(
                           width: screenSize.width / 1.2 + cardWidth,
                           height:
-                              screenSize.height / 1.7 - screenSize.height / 2.2,
+                              20.0,
                           alignment: Alignment.center,
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

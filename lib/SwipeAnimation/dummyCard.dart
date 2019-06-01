@@ -25,7 +25,7 @@ Positioned cardDemoDummy(
         height: screenSize.height / 1.7,
         decoration: new BoxDecoration(
           // Inactive Card Backround
-          color: new Color.fromRGBO(18,21,53, 1.0),
+          color: new Color.fromRGBO(255,255,255, 1.0),
           borderRadius: new BorderRadius.circular(8.0),
         ),
         child: new Column(

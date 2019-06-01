@@ -43,6 +43,7 @@ flutter:
 
   assets:
   - lib/images/profile_image_1.png
+  - lib/images/profile_image_2.png
   #  - images/a_dot_ham.jpeg
 
   # To add assets to your application, add an assets section, like this:
