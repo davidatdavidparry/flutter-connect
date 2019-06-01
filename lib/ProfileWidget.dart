@@ -12,7 +12,7 @@ class ProfileWidget extends StatelessWidget {
 
   GitHub createClient() {
     if (github == null) {
-      github = GitHub(auth: Authentication.withToken("cc6f13198f21dc1c2d7c5179a34e7d3d5c805ed5"));
+      github = GitHub(auth: Authentication.withToken("dae75dc5aadbb6dda2d30080ff3af34c0112597e"));
     }
     return github;
   }
@@ -94,8 +94,8 @@ class ProfileWidget extends StatelessWidget {
         createClient().search.code(
               'github',
               language: 'flutter',
-              perPage: 5,
-              pages: 5,
+              perPage: 10,
+              pages: 1,
             );
 
     int count = 0;
@@ -106,11 +106,9 @@ class ProfileWidget extends StatelessWidget {
         var id = item.repository.owner.id.toString() ;
         print('item: $item ');
         //map[id] = item;
-
-         createClient().users.getUser(login).then((user) {
-          users.add(user);
-
-         });
+        print("calling to a user $login");
+        User u =  await createClient().users.getUser(login);
+        users.add(u);
       }
     }
 
