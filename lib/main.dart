@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:github/server.dart';
 import 'ProfileWidget.dart';
 
 void main() => runApp(MyApp());
@@ -7,24 +6,14 @@ void main() => runApp(MyApp());
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
   String _title = 'Flutter Code Sample';
-  GitHub github;
-  static String bio = 'my bio';
   @override
   Widget build(BuildContext context) {
-    github = createClient("c64268458edf715bf1a3f4042cd4868dba8693a6");
-    github.users.getCurrentUser().then((CurrentUser user) {
-      bio = user.bio;
 
-    });
     return MaterialApp(
       title: _title,
       home: MyStatefulWidget(),
     );
   }
-}
-
-GitHub createClient(String token) {
-  return GitHub(auth: Authentication.withToken(token));
 }
 
 
@@ -42,14 +31,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     ProfileWidget(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
   ];
 
   void _onItemTapped(int index) {
