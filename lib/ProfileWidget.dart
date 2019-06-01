@@ -14,7 +14,7 @@ class ProfileWidget extends StatelessWidget {
       try {
         github = GitHub(
             auth: Authentication.withToken(
-                "317ec63f8e11acca1f9ddf36eebaa3d97e3b208b"));
+                "ce2bbdb430d6d3eb15cace43cb4c4b4649713634"));
       } catch (exception, stackTrace) {
         print("Excpetion occured ${exception}");
       }
@@ -23,10 +23,6 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget build(context) {
-    //search('here is value');
-
-    // createClient("3f4c94454acc3438ac23c7f45c3a92026e7c6d69").users.getCurrentUser()
-
     return new Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.all(3.0),
@@ -54,13 +50,13 @@ class ProfileWidget extends StatelessWidget {
   }
 
   List<Widget> _getDataProjectUsers(AsyncSnapshot snapshot) {
-    List<String> users = snapshot.data;
+    List<Map<String,dynamic>> users = snapshot.data;
     List<Widget> widgets = new List();
     print('usrsCnt : $users');
     if (users != null) {
       widgets = <Widget>[
         Image.network(
-          users.elementAt(0),
+          users.elementAt(0)['avatar_url'],
         )
       ];
     } else {
@@ -69,42 +65,46 @@ class ProfileWidget extends StatelessWidget {
     return widgets;
   }
 
-  Future<List<String>> search(_) async {
-    List<String> users = new List();
+  Future<List<Map<String, dynamic>>> search(_) async {
+    List<Map<String, dynamic>> users = new List();
     List<String> searchItems = new List();
     var github = createClient();
     if (github != null) {
-      Stream<CodeSearchResults> resultsStream = createClient().search.code(
-            'github',
-            language: 'flutter',
-            perPage: 10,
-            pages: 1,
-          );
+      try {
+        Stream<CodeSearchResults> resultsStream = createClient().search.code(
+              'github',
+              language: 'flutter',
+              perPage: 10,
+              pages: 1,
+            );
 
-      await for (var results in resultsStream) {
-        print('results: $results ');
-        for (CodeSearchItem item in results.items) {
-          var login = item.repository.owner.login;
-          var id = item.repository.owner.id.toString();
-          print('item: $item ');
-          print("adding user login id $login");
-          searchItems.add(login);
+        await for (var results in resultsStream) {
+          print('results: $results ');
+          for (CodeSearchItem item in results.items) {
+            var login = item.repository.owner.login;
+            var id = item.repository.owner.id.toString();
+            print('item: $item ');
+            print("adding user login id $login");
+            searchItems.add(login);
+          }
+        }
+      } catch (exception, stackTrace) {
+        print("Excpetion occured ${exception}");
+      }
+
+      if (searchItems.isNotEmpty) {
+        var github = createClient();
+        if (github != null) {
+          Stream<User> usersStreams =
+              await createClient().users.getUsers(searchItems);
+          await for (var resultUser in usersStreams) {
+            print("adding user to the list $resultUser ");
+            Map _map = resultUser.toJson();
+            users.add(_map);
+          }
         }
       }
     }
-
-    if (searchItems.isNotEmpty) {
-      var github = createClient();
-      if (github != null) {
-        Stream<User> usersStreams =
-            await createClient().users.getUsers(searchItems);
-        await for (var resultUser in usersStreams) {
-          print("adding user to the list $resultUser ");
-          users.add(resultUser.avatarUrl);
-        }
-      }
-    }
-
     return users;
   }
 }
