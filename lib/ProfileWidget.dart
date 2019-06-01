@@ -49,7 +49,7 @@ class ProfileWidget extends StatelessWidget {
 
     List<Widget> widgets = <Widget>[
       Text(
-        'Hello my BIO is, $v !',
+        'BIO data is, $v !',
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.bold),
       )
