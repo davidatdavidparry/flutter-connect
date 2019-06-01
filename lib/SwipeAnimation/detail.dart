@@ -203,7 +203,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         new Text(
-                                          "ATTENDEES",
+                                          "PROJECTS",
                                           style: new TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -212,25 +212,25 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                               MainAxisAlignment.spaceAround,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            new CircleAvatar(
-                                                backgroundImage: avatar1),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar2,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar3,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar4,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar5,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar6,
-                                            )
-                                          ],
+                                          // children: <Widget>[
+                                          //   new CircleAvatar(
+                                          //       backgroundImage: avatar1),
+                                          //   new CircleAvatar(
+                                          //     backgroundImage: avatar2,
+                                          //   ),
+                                          //   new CircleAvatar(
+                                          //     backgroundImage: avatar3,
+                                          //   ),
+                                          //   new CircleAvatar(
+                                          //     backgroundImage: avatar4,
+                                          //   ),
+                                          //   new CircleAvatar(
+                                          //     backgroundImage: avatar5,
+                                          //   ),
+                                          //   new CircleAvatar(
+                                          //     backgroundImage: avatar6,
+                                          //   )
+                                          // ],
                                         )
                                       ],
                                     ),

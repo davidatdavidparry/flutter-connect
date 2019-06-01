@@ -142,6 +142,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
     double initialBottom = 15.0;
     var dataLength = data.length;
+    // back card position
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return (new Scaffold(
@@ -171,6 +172,11 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                     Icons.person_outline,
                     color: Colors.white,
                     size: 30.0,
+
+                    //
+// CircleAvatar(
+//                                                 backgroundImage: avatar1
+                    //
                   )),
             ),
           ],
@@ -232,8 +238,8 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                           backCardWidth, 0.0, 0.0, context);
                     }
                   }).toList())
-              : new Text("No Event Left",
-                  style: new TextStyle(color: Colors.white, fontSize: 50.0)),
+              : new Text("No Users Left",
+                  style: new TextStyle(color: Colors.white, fontSize: 30.0)),
         )));
   }
 
