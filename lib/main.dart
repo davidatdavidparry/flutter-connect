@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github/server.dart';
+import 'Feed.dart';
 import 'ProfileWidget.dart';
 
 void main() => runApp(MyApp());
@@ -42,10 +43,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     ProfileWidget(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    Feed(),
     Text(
       'Index 2: School',
       style: optionStyle,
@@ -60,9 +58,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
 
     return Scaffold(
       appBar: AppBar(
