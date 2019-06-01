@@ -53,36 +53,18 @@ class ProfileWidget extends StatelessWidget {
             }));
   }
 
-  List<Widget> _getDataUser(AsyncSnapshot snapshot) {
-    var v = snapshot.data.bio;
-
-    print('bio : $v');
-
-    List<Widget> widgets = <Widget>[
-      Text(
-        'BIO data is, $v !',
-        textAlign: TextAlign.center,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      )
-    ];
-    return widgets;
-  }
-
   List<Widget> _getDataProjectUsers(AsyncSnapshot snapshot) {
     List<String> users = snapshot.data;
     List<Widget> widgets = new List();
     print('usrsCnt : $users');
-    if(users != null) {
+    if (users != null) {
       widgets = <Widget>[
         Image.network(
-          users
-              .elementAt(0),
+          users.elementAt(0),
         )
       ];
     } else {
-      widgets = <Widget>[
-        Text('List null')
-      ];
+      widgets = <Widget>[Text('List null')];
     }
     return widgets;
   }
@@ -91,13 +73,13 @@ class ProfileWidget extends StatelessWidget {
     List<String> users = new List();
     List<String> searchItems = new List();
     var github = createClient();
-    if(github != null) {
+    if (github != null) {
       Stream<CodeSearchResults> resultsStream = createClient().search.code(
-        'github',
-        language: 'flutter',
-        perPage: 10,
-        pages: 1,
-      );
+            'github',
+            language: 'flutter',
+            perPage: 10,
+            pages: 1,
+          );
 
       await for (var results in resultsStream) {
         print('results: $results ');
@@ -111,11 +93,11 @@ class ProfileWidget extends StatelessWidget {
       }
     }
 
-    if(searchItems.isNotEmpty) {
+    if (searchItems.isNotEmpty) {
       var github = createClient();
-      if(github != null) {
-        Stream<User> usersStreams = await createClient().users.getUsers(
-            searchItems);
+      if (github != null) {
+        Stream<User> usersStreams =
+            await createClient().users.getUsers(searchItems);
         await for (var resultUser in usersStreams) {
           print("adding user to the list $resultUser ");
           users.add(resultUser.avatarUrl);
