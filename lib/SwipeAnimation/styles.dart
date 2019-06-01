@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 DecorationImage image1 = new DecorationImage(
-  image: new ExactAssetImage('assets/img1.jpg'),
+  image: new ExactAssetImage('images/profile_image_1.png'),
   fit: BoxFit.cover,
 );
 DecorationImage image2 = new DecorationImage(

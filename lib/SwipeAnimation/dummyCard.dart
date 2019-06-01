@@ -47,38 +47,39 @@ Positioned cardDemoDummy(
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    new FlatButton(
-                        padding: new EdgeInsets.all(0.0),
-                        onPressed: () {},
-                        child: new Container(
-                          height: 60.0,
-                          width: 130.0,
-                          alignment: Alignment.center,
-                          decoration: new BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: new BorderRadius.circular(60.0),
-                          ),
-                          child: new Text(
-                            "DON'T",
-                            style: new TextStyle(color: Colors.white),
-                          ),
-                        )),
-                    new FlatButton(
-                        padding: new EdgeInsets.all(0.0),
-                        onPressed: () {},
-                        child: new Container(
-                          height: 60.0,
-                          width: 130.0,
-                          alignment: Alignment.center,
-                          decoration: new BoxDecoration(
-                            color: Colors.cyan,
-                            borderRadius: new BorderRadius.circular(60.0),
-                          ),
-                          child: new Text(
-                            "I'M IN",
-                            style: new TextStyle(color: Colors.white),
-                          ),
-                        ))
+                    
+                    // new FlatButton(
+                    //     padding: new EdgeInsets.all(0.0),
+                    //     onPressed: () {},
+                    //     child: new Container(
+                    //       height: 60.0,
+                    //       width: 130.0,
+                    //       alignment: Alignment.center,
+                    //       decoration: new BoxDecoration(
+                    //         color: Colors.red,
+                    //         borderRadius: new BorderRadius.circular(60.0),
+                    //       ),
+                    //       child: new Text(
+                    //         "DON'T",
+                    //         style: new TextStyle(color: Colors.white),
+                    //       ),
+                    //     )),
+                    // new FlatButton(
+                    //     padding: new EdgeInsets.all(0.0),
+                    //     onPressed: () {},
+                    //     child: new Container(
+                    //       height: 60.0,
+                    //       width: 130.0,
+                    //       alignment: Alignment.center,
+                    //       decoration: new BoxDecoration(
+                    //         color: Colors.cyan,
+                    //         borderRadius: new BorderRadius.circular(60.0),
+                    //       ),
+                    //       child: new Text(
+                    //         "I'M IN",
+                    //         style: new TextStyle(color: Colors.white),
+                    //       ),
+                    //     ))
                   ],
                 ))
           ],

@@ -131,14 +131,14 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           elevation: 0.0,
           backgroundColor: new Color.fromRGBO(50,56,131, 1.0),
           centerTitle: true,
-          leading: new Container(
-            margin: const EdgeInsets.all(15.0),
-            child: new Icon(
-              Icons.equalizer,
-              color: Colors.cyan,
-              size: 30.0,
-            ),
-          ),
+          // leading: new Container(
+          //   margin: const EdgeInsets.all(15.0),
+          //   child: new Icon(
+          //     Icons.equalizer,
+          //     color: Colors.cyan,
+          //     size: 30.0,
+          //   ),
+          // ),
           actions: <Widget>[
             new GestureDetector(
               onTap: () {
@@ -150,7 +150,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
               child: new Container(
                   margin: const EdgeInsets.all(15.0),
                   child: new Icon(
-                    Icons.search,
+                    Icons.person_outline,
                     color: Colors.cyan,
                     size: 30.0,
                   )),
@@ -160,7 +160,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(
-                "EVENTS",
+                "Flutter Connect",
                 style: new TextStyle(
                     fontSize: 12.0,
                     letterSpacing: 3.5,
@@ -184,6 +184,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
         body: new Container(
 
           // TO DO: Make this a gradient
+          // Main Background
           color: new Color.fromRGBO(50,56,131, 1.0),
           alignment: Alignment.center,
           child: dataLength > 0

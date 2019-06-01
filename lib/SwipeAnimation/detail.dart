@@ -110,7 +110,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             _appBarBehavior == AppBarBehavior.snapping,
                         snap: _appBarBehavior == AppBarBehavior.snapping,
                         flexibleSpace: new FlexibleSpaceBar(
-                          title: new Text("Party"),
+                          title: new Text("John Williams"),
                           background: new Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
@@ -149,13 +149,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                         new Row(
                                           children: <Widget>[
                                             new Icon(
-                                              Icons.access_time,
+                                              Icons.personal_video,
                                               color: Colors.cyan,
                                             ),
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("10:00  AM"),
+                                              child: new Text("Developer"),
                                             )
                                           ],
                                         ),
@@ -168,7 +168,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("15 MILES"),
+                                              child: new Text("Dallas, TX"),
                                             )
                                           ],
                                         ),
@@ -268,7 +268,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                   borderRadius: new BorderRadius.circular(60.0),
                                 ),
                                 child: new Text(
-                                  "DON'T",
+                                  "SKIP",
                                   style: new TextStyle(color: Colors.white),
                                 ),
                               )),
@@ -284,7 +284,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                   borderRadius: new BorderRadius.circular(60.0),
                                 ),
                                 child: new Text(
-                                  "I'M IN",
+                                  "CONNECT",
                                   style: new TextStyle(color: Colors.white),
                                 ),
                               ))
