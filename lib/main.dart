@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github/server.dart';
+import 'ProfileWidget.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,8 +11,7 @@ class MyApp extends StatelessWidget {
   static String bio = 'my bio';
   @override
   Widget build(BuildContext context) {
-    github = createClient("e7eb1a3750b70b5265e502e72d7123322c7ccbf4");
-
+    github = createClient("c64268458edf715bf1a3f4042cd4868dba8693a6");
     github.users.getCurrentUser().then((CurrentUser user) {
       bio = user.bio;
 
@@ -40,11 +40,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Here',
-      style: optionStyle,
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    ProfileWidget(),
     Text(
       'Index 1: Business',
       style: optionStyle,
