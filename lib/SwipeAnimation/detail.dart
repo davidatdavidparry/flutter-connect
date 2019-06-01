@@ -185,7 +185,9 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   new Text(
+
                                       "I am an experienced flutter developer with 2 years in Dart and 10 in Java and Android.  "),
+                                      
                                   new Container(
                                     margin: new EdgeInsets.only(top: 25.0),
                                     padding: new EdgeInsets.only(
